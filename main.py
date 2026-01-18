@@ -12,8 +12,14 @@ data.reverse()
 
 xAxis = [i for i in range(len(data))]
 
-INCOME = 5000
+INCOME = 7500
 INCOME_PERIOD = 30
+total = 0
+deposit = []
+for index, _ in enumerate(data):
+    if index % INCOME_PERIOD == 0:
+        total += INCOME
+    deposit.append(total)
 
 # buy and hold
 buyAndHold = []
@@ -37,24 +43,24 @@ buyOnRecess = []
 for index, price in enumerate(data):
     if index % INCOME_PERIOD == 0:
         cashOnHand += INCOME
-    
+
     if price > previousHigh:
         previousHigh = price
         descendDays = 0
     else:
         descendDays += 1
         
-        if descendDays >= 4:
+        if descendDays >= 3:
             spend = min(cashOnHand, max(20, cashOnHand * min(0.5, descendDays / 15)))
             cashOnHand -= spend
             shares += spend / price
         if 1 - price / yesterday > 0.01: # more than 1% drop day to day warrants a sell
             if shares > 0:
-                sellAmount = shares * 0.05
+                sellAmount = shares * 1
                 shares -= sellAmount
                 cashOnHand += sellAmount * price
         elif cashOnHand > 0: # if all else doesn't pass, buy instead with a little of the capital
-            spend = min(cashOnHand, max(20, cashOnHand * 0.05))
+            spend = cashOnHand
             cashOnHand -= spend
             shares += spend / price
     buyOnRecess.append(shares * price + cashOnHand)
@@ -67,6 +73,7 @@ print(buyOnRecess[-1] / buyAndHold[-1])
 # plt.plot(xAxis, diff, label = "Diff")
 plt.plot(xAxis, buyAndHold, label = "Buy and Hold")
 plt.plot(xAxis, buyOnRecess, label = "Buy on Recess")
+plt.plot(xAxis, deposit, label = "Deposit")
 plt.plot(xAxis, data, label = "SPY Price")
 
 plt.legend()
