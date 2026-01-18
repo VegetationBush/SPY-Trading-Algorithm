@@ -7,8 +7,8 @@ Every interval of days, a set amount of "income" is recieved. The buy and hold s
 
 For my strategy (currently called "Buy on Recess", but may change later):
 1. If the current price has been descending for more than 3 days from the previous peak, spend `min(cashOnHand, max(20, cashOnHand * min(0.5, descendDays / 15)))` amount of money to purchase stocks.
-2.  a. If the current price drops by over 1% from yesterdays price, **liquidate** the entire portfolio
-    b. If it doesn't drop by more than 1%, use all the cash on hand to buy the stock.
+2.  - If the current price drops by over 1% from yesterdays price, **liquidate** the entire portfolio.
+    - Else if it doesn't drop by more than 1%, use all the cash on hand to buy the stock.
 3. Profit. It's really that simple.
 
 Note that 1. and 2. are both ran one after another. So both 1. and 2. can run on the same day.
