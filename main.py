@@ -1,3 +1,9 @@
+'''
+Yes this is spaghetti code.
+No I don't want to fix it!
+It just works.
+'''
+
 import matplotlib.pyplot as plt
 
 data = []
