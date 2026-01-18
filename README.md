@@ -12,9 +12,16 @@ For my strategy (currently called "Buy on Recess", but may change later):
 
 If this actually works, I'll be rich!
 
+# Why does it work?
+Honestly, I have no idea, but I have a hypothesis.
+
+The algorithm performs approximately the same as buy and hold for normal market conditions (probably lagging behind a percent or two), but does exceptionally well during any sort of downturn (as shown by the "diff" bar quickly spiking). The performance during downturns is what I think separates this algoirthm from buy and hold.
+
 # Sample Simulation
 ![TradingSimulation](TradingSimulation.png)
 
 # Side Note.  
 I was planning to add LEAP call options into the equation (to capitalize on major market downturns, where calls would be rotated into). However I couldn't find any SPY call option historical data that was accessible and free, so unfortunately I couldn't simulate that rotation.  
 I'd guestimate (since it's only speculation), that adding 1+ year dated call options into the equation would increase the diff after 2500 days towards 70-100%. Obviously, I'm estimating. I don't know if that's actually the case since I haven't simulated it.
+
+I'm sure there are also many other optimizations that can be made to the algorithm, but this is currently a proof-of-concept.
