@@ -76,9 +76,14 @@ for i in range(len(buyAndHold)):
 
 ax1.plot(xAxis, diff, "k", label = "Diff", alpha = 0.2, zorder = 1)
 
+# drawing vertical lines where diff "spikes"
+for i in range(5, len(diff)):
+    if diff[i] - diff[i-5] > 0.05:
+        ax1.axvline(x=i, color='black', alpha=0.04, zorder=0)
+
 ax1.set_ylabel('Diff (Recess / Hold)')
 ax1.yaxis.set_label_position("right")
-ax1.legend(loc = "upper left", bbox_to_anchor=(0, 1 - 120/plt.gcf().get_size_inches()[1]/plt.gcf().dpi))
+ax1.legend(loc = "upper left", bbox_to_anchor=(0, 1 - 200/plt.gcf().get_size_inches()[1]/plt.gcf().dpi))
 
 # plot strategies
 ax2 = ax1.twinx()
