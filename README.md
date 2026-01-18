@@ -20,7 +20,7 @@ The algorithm performs approximately the same as buy and hold for normal market 
 # Sample Simulation
 ![Simulation](Simulation.png)
 
-Interestingly, this algorithm might be able to predict the dips accurately enough to snipe the bottom of any dip, as shown by the verical lines (which coincidentally aligns at the dip(?)).
+Interestingly, this algorithm might be able to predict the dips accurately enough to snipe the bottom of any dip, as shown by the verical lines (which coincidentally aligns at the dip(?)). A glorified buy signal.
 
 # Side Notes
 I was planning to add LEAP call options into the equation (to capitalize on major market downturns, where calls would be rotated into). However I couldn't find any SPY call option historical data that was accessible and free, so unfortunately I couldn't simulate that rotation.  
