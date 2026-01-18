@@ -12,7 +12,6 @@ with open("spy_historical.txt") as f:
         last_number = line.strip().split(",")[-1]
         data.append(float(last_number))
 data.reverse()
-
 xAxis = [i for i in range(len(data))]
 
 # net deposit

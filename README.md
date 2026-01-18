@@ -20,7 +20,9 @@ The algorithm performs approximately the same as buy and hold for normal market 
 # Sample Simulation
 ![Simulation](Simulation.png)
 
-# Side Note.
+Interestingly, this algorithm might be able to predict the dips accurately enough to snipe the bottom of any dip, as shown by the verical lines (which coincidentally aligns at the dip(?)).
+
+# Side Notes
 I was planning to add LEAP call options into the equation (to capitalize on major market downturns, where calls would be rotated into). However I couldn't find any SPY call option historical data that was accessible and free, so unfortunately I couldn't simulate that rotation.  
 I'd guestimate (since it's only speculation), that adding 1+ year dated call options into the equation would increase the diff after 2500 days towards 70-100%. Obviously, I'm estimating. I don't know if that's actually the case since I haven't simulated it.
 
