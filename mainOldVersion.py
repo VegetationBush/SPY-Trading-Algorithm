@@ -1,21 +1,21 @@
 '''
-Just kidding.
-I fixed it.
+Yes this is spaghetti code.
+No I don't want to fix it!
+It just works.
 '''
 
 import matplotlib.pyplot as plt
 
-# loading data
 data = []
+
 with open("spy_historical.txt") as f:
     for line in f:
         last_number = line.strip().split(",")[-1]
         data.append(float(last_number))
+        
 data.reverse()
-
 xAxis = [i for i in range(len(data))]
 
-# net deposit
 INCOME = 10
 INCOME_PERIOD = 30
 total = 0
@@ -41,35 +41,39 @@ for index, price in enumerate(data):
 cashOnHand = 0
 previousHigh = 0
 yesterday = 0
+descendDays = 0
 shares = 0
 buyOnRecess = []
 for index, price in enumerate(data):
     if index % INCOME_PERIOD == 0:
         cashOnHand += INCOME
 
-    '''
-    1. If the current price drops by over 1% from yesterdays price, **liquidate** the entire portfolio.
-    2. If it doesn't drop by more than 1%, use all the cash on hand to buy the stock.
-    '''
     if price > previousHigh:
         previousHigh = price
+        descendDays = 0
     else:
+        descendDays += 1
+        
+        if descendDays >= 3 and (1 - price / previousHigh) > 0.05:
+            spend = min(cashOnHand, max(20, cashOnHand * min(0.5, descendDays / 15)))
+            cashOnHand -= spend
+            shares += spend / price
+            
         if 1 - price / yesterday > 0.01: # more than 1% drop day to day warrants a liquidate
-            sellAmount = shares
-            shares -= sellAmount
-            cashOnHand += sellAmount * price
+            if shares > 0:
+                sellAmount = shares
+                shares -= sellAmount
+                cashOnHand += sellAmount * price
         elif cashOnHand > 0: # if all else doesn't pass, buy instead with a little of the capital
             spend = cashOnHand
             cashOnHand -= spend
             shares += spend / price
     buyOnRecess.append(shares * price + cashOnHand)
     yesterday = price
-
-print("Final Diff:", buyOnRecess[-1] / buyAndHold[-1])
+print(buyOnRecess[-1] / buyAndHold[-1])
 
 fig, ax1 = plt.subplots()
 
-# plotting diff
 diff = []
 for i in range(len(buyAndHold)):
     diff.append(buyOnRecess[i] / buyAndHold[i])
@@ -80,7 +84,6 @@ ax1.set_ylabel('Diff (Recess / Hold)')
 ax1.yaxis.set_label_position("right")
 ax1.legend(loc = "upper left", bbox_to_anchor=(0, 1 - 120/plt.gcf().get_size_inches()[1]/plt.gcf().dpi))
 
-# plot strategies
 ax2 = ax1.twinx()
 
 ax2.plot(xAxis, buyAndHold, "r", label = "Buy and Hold", zorder = 3)

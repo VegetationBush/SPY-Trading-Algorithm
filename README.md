@@ -6,14 +6,15 @@ Simulated runs show a ~54% increase in returns when using this algorithm over 25
 Every interval of days, a set amount of "income" is recieved. The buy and hold strategy immediately purchases the maximum amount of shares whenever possible.
 
 For my strategy (currently called "Buy on Recess", but may change later):
-1. If the current price has been descending for more than 3 days from the previous peak, spend `min(cashOnHand, max(20, cashOnHand * min(0.5, descendDays / 15)))` amount of money to purchase stocks.
-2.  - If the current price drops by over 1% from yesterdays price, **liquidate** the entire portfolio.
-    - Else if it doesn't drop by more than 1%, use all the cash on hand to buy the stock.
+1. If the current price drops by over 1% from yesterdays price, **liquidate** the entire portfolio.
+2. If it doesn't drop by more than 1%, use all the cash on hand to buy the stock.
 3. Profit. It's really that simple.
 
-Note that 1. and 2. are both ran one after another. So both 1. and 2. can run on the same day.
-
 If this actually works, I'll be rich!
+
+And just as a side note.
+I was planning to add LEAP call options into the equation (to capitalize on major market downturns, where calls would be rotated into). However I couldn't find any SPY call option historical data that was accessible and free, so unfortunately I couldn't simulate that rotation.
+I'd guestimate (since it's only speculation), that adding 1+ year dated call options into the equation would increase the diff after 2500 days towards 70-100%. Obviously, I'm estimating. I don't know if that's actually the case since I haven't simulated it.
 
 # Sample Simulation
 ![TradingSimulation](TradingSimulation.png)
