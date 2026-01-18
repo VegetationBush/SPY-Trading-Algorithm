@@ -67,14 +67,29 @@ for index, price in enumerate(data):
     yesterday = price
 print(buyOnRecess[-1] / buyAndHold[-1])
 
-# diff = []
-# for i in range(len(buyAndHold)):
-#     diff.append(buyOnRecess[i] / buyAndHold[i])
-# plt.plot(xAxis, diff, label = "Diff")
-plt.plot(xAxis, buyAndHold, label = "Buy and Hold")
-plt.plot(xAxis, buyOnRecess, label = "Buy on Recess")
-plt.plot(xAxis, deposit, label = "Deposit")
-plt.plot(xAxis, data, label = "SPY Price")
+fig, ax1 = plt.subplots()
 
-plt.legend()
+diff = []
+for i in range(len(buyAndHold)):
+    diff.append(buyOnRecess[i] / buyAndHold[i])
+
+ax1.plot(xAxis, diff, "k", label = "Diff", alpha = 0.2, zorder = 1)
+
+ax1.set_ylabel('Diff (Recess / Hold)')
+ax1.yaxis.set_label_position("right")
+ax1.legend(loc = "upper left", bbox_to_anchor=(0, 1 - 120/plt.gcf().get_size_inches()[1]/plt.gcf().dpi))
+
+ax2 = ax1.twinx()
+
+ax2.plot(xAxis, buyAndHold, "r", label = "Buy and Hold", zorder = 3)
+ax2.plot(xAxis, buyOnRecess, color = "orange", label = "Buy on Recess", zorder = 3)
+ax2.plot(xAxis, deposit, "g", label = "Deposit", alpha = 0.2, zorder = 2)
+ax2.plot(xAxis, data, "b", label = "SPY Price", alpha = 0.2, zorder = 2)
+
+ax2.set_xlabel("Days")
+ax2.set_ylabel('Portfolio Value')
+ax1.yaxis.set_label_position("left")
+ax2.legend()
+
+plt.title("Investment Strategies Comparison")
 plt.show()
