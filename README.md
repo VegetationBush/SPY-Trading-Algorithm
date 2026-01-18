@@ -16,4 +16,4 @@ Note that 1. and 2. are both ran one after another. So both 1. and 2. can run on
 If this actually works, I'll be rich!
 
 # Sample Simulation
-[Simulation](Simulation.png)
+![Simulation](Simulation.png)
