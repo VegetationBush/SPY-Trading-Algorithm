@@ -21,11 +21,11 @@ xAxis = [i for i in range(len(data))]
 INCOME = 10
 INCOME_PERIOD = 30
 total = 0
-deposit = []
+netDeposit = []
 for index, _ in enumerate(data):
     if index % INCOME_PERIOD == 0:
         total += INCOME
-    deposit.append(total)
+    netDeposit.append(total)
 
 # buy and hold
 buyAndHold = []
@@ -89,7 +89,7 @@ ax2 = ax1.twinx()
 
 ax2.plot(xAxis, buyAndHold, "r", label = "Buy and Hold", zorder = 3)
 ax2.plot(xAxis, buyOnRecess, color = "orange", label = "Buy on Recess", zorder = 3)
-ax2.plot(xAxis, deposit, "g", label = "Deposit", alpha = 0.2, zorder = 2)
+ax2.plot(xAxis, netDeposit, "g", label = "Net Deposit", alpha = 0.2, zorder = 2)
 ax2.plot(xAxis, data, "b", label = "SPY Price", alpha = 0.2, zorder = 2)
 
 ax2.set_xlabel("Days")
