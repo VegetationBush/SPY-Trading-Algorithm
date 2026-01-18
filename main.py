@@ -12,7 +12,7 @@ data.reverse()
 
 xAxis = [i for i in range(len(data))]
 
-INCOME = 7500
+INCOME = 10
 INCOME_PERIOD = 30
 total = 0
 deposit = []
