@@ -1,5 +1,11 @@
 # Spy Trading Algorithm
 
+**IT DOESNT ACTUALLY WORK!!!** (not very suprising since beating the market is almost impossible 😅)
+After some review it seems like I used the "daily low" as a purchase price, which drastically skews the algorithm up. This does not reflect real-world returns.
+
+**Please don't use this algorithm unless you want to donate money to the market** (but if you want to donate money to the market, don't... consider donating to me instead).
+___
+# But if you're curious on why I thought it worked...
 Simulated runs show a ~54% increase in returns when using this algorithm over 2500 days against the popular buy and hold strategy. This is meant for retail traders, since liquidity is extra important here.
 
 # How it works
